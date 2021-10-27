@@ -28,6 +28,43 @@ It's guaranteed that val does not exist in the original BST.
  * @param {number} val
  * @return {TreeNode}
  */
+//learned about Binary Tree with NYC Coders, pair programming by Lucas Chen and with Ameya
 var insertIntoBST = function(root, val) {
-    
+    // If no root exists set root to new node and return
+    const newNode = new TreeNode(val)
+    if (!root) return newNode
+ 
+    // Create a current node variable and set it to root
+    // Repeat until insertion
+    let currentNode = root
+
+    while (currentNode) {
+        if (val < currentNode.val) {
+        // If val < current node val
+        // If no left child on current node, add new node to left
+           
+            if (!currentNode.left) {
+             
+                currentNode.left = newNode
+          
+                break
+           
+            }
+            currentNode = currentNode.left
+        } else if (val > currentNode.val) {
+        // Else set current node to left child
+        // If val > current node val
+        // If no right child on current node, add new node to right
+            if (! currentNode.right) {
+                currentNode.right = newNode
+                break
+            }
+            currentNode = currentNode.right
+        } else {
+            currentNode.right = newNode
+        // Else set current node to right child       
+        }
+    }
+    return root
+
 };
